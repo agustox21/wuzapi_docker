@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  whatsapp:
+    image: asternic/wuzapi:latest
+    container_name: wuzapi01
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    env_file:
+      - wuzapi.env
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+    networks:
+      - network_whatsapp
+networks:
+  network_whatsapp:
+    driver: bridge
